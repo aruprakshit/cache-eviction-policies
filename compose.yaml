@@ -1,0 +1,15 @@
+services:
+  lab:
+    image: ruby:4.0
+    user: "${LOCAL_UID:?Set LOCAL_UID in .env}:${LOCAL_GID:?Set LOCAL_GID in .env}"
+    working_dir: /app
+    environment:
+      BUNDLE_PATH: /bundle
+      XDG_CACHE_HOME: /tmp/cache
+    volumes:
+      - .:/app
+      - bundle:/bundle
+    command: ruby --version
+
+volumes:
+  bundle:
